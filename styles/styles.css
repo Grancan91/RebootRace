@@ -20,22 +20,60 @@ body{
 .screen_game{
     position: absolute;
     display: flex;
-    background-color: red;
     height: 70vh;
     width: 70vw;
 }
 .screen_game_left{
     background-color: green;
-    width: 15vw;
+    width: 12vw;
     height: 70vh;
 }
+
 .screen_game_mid {
+    position: relative;
     background-color: rgb(68, 68, 68);
     width: 40vw;
     height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.piano {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    width: 3vw;
+    height: 70vh;
+}
+
+.baldosa_red{
+    background-color: red;
+    border-radius: 3px;
+    width: 3vw;
+    height: 6vh;
+}
+.baldosa_white {
+    background-color: rgb(211, 194, 194);
+    width: 3vw;
+    height: 6vh;
 }
 .screen_game_right {
     background-color: green;
-    width: 15vw;
+    width: 12vw;
     height: 70vh;
+}
+
+.start_button{
+    background-color: aqua;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    height: 10vh;
+    border-radius: 20px;
+}
+.start_button > span{
+    color: red;
+    font-size: 3em;
 }
