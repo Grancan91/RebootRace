@@ -1,0 +1,41 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_game{
+    background-color: rgb(236, 253, 0);
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 80vw;
+}
+.screen_game{
+    position: absolute;
+    display: flex;
+    background-color: red;
+    height: 70vh;
+    width: 70vw;
+}
+.screen_game_left{
+    background-color: green;
+    width: 15vw;
+    height: 70vh;
+}
+.screen_game_mid {
+    background-color: rgb(68, 68, 68);
+    width: 40vw;
+    height: 70vh;
+}
+.screen_game_right {
+    background-color: green;
+    width: 15vw;
+    height: 70vh;
+}
