@@ -1,4 +1,10 @@
 # RebootRace
+
+# Next Changes
+ - cars.js
+ - animations.js
+
+
 # Creados y Linkeados
  - index.html
  - index.js
