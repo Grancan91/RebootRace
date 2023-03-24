@@ -8,58 +8,32 @@ var player = {
     score:0,
     posX:1,
     posY:1,
+    size: 100
 }
 
+//Movimiento del coche Player 
 playerCar = document.querySelector('.player1');
-console.log(player)
-
-
-
-
-
-
-//var ancho=window.innerWidth
-//var alto= window.innerWidth
-
-
-
-
-
-
-//
 var board = document.querySelector('.screen_game_mid');
-console.log(board.scrollWidth)
-
-//board.innerWidth
-
-
-
-//Movimiento del coche Player 1
-
 //Añadiendo captura de eventos al pulsar tecla.
-const tecla = window.addEventListener("keydown", function(event){
-    console.log(event)
-    if (event.key == "ArrowLeft"){
-    console.log("hola")
+const tecla = window.addEventListener("keydown", function (event) {
+    var movement = 100
     
-    player.posX -= 100;
-    console.log(player.posX)
-
-        
-    } else if (event.key == "ArrowRight"){
-        console.log("hola pepe")
-        player.posX += 100;
+        if (event.key == "ArrowLeft" && (player.posX - movement) > 0) {
+        player.posX -= movement;
+    } else if (event.key == "ArrowRight" && (player.posX + player.size) < 950) {
+        player.posX += movement;
         console.log(player.posX)
-}
-    playerCar.setAttribute('style', `transform: translateX(${player.posX}px)`)    
+    }
+    playerCar.setAttribute('style', `transform: translateX(${player.posX}px)`)
 });
 
 
 
+borderMapColission()
 //style = "left:1vh; right:1vh; bottom: 10px;
 
 // Calculando referencia del coche a través del scroll.Width (referencia)
-
+/*
 function spawnPla (){
 
     var spawn=Math.floor(board.scrollWidth/2)
@@ -68,7 +42,7 @@ function spawnPla (){
 }
 spawnPla(); 
 //player.posX = -1
-
+*/
 
 
 //player.setAttribute('style', `transform: translateX(${player.posX}px)`)
