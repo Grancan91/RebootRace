@@ -2,15 +2,15 @@ function Car(){
     this.posLeft
     this.posRight
 }
-// Coche del Jugado r
+// Coche del Jugador
 var player = {
     vida:3,
     score:0,
-    posX:0,
-    posY:0,
+    posX:1,
+    posY:1,
 }
 
-player = document.querySelector('.player1');
+playerCar = document.querySelector('.player1');
 console.log(player)
 
 
@@ -40,18 +40,18 @@ console.log(board.scrollWidth)
 const tecla = window.addEventListener("keydown", function(event){
     console.log(event)
     if (event.key == "ArrowLeft"){
-       console.log("hola")
-       player.posX -= 100;
-       console.log(player.posX)
+    console.log("hola")
+    
+    player.posX -= 100;
+    console.log(player.posX)
 
         
     } else if (event.key == "ArrowRight"){
         console.log("hola pepe")
         player.posX += 100;
         console.log(player.posX)
-
-   }
-    player.setAttribute('style', `transform: translateX(${player.posX}px)`)    
+}
+    playerCar.setAttribute('style', `transform: translateX(${player.posX}px)`)    
 });
 
 
@@ -66,7 +66,8 @@ function spawnPla (){
     console.log(spawn)
 
 }
-spawnPla(); player.posX = 100
+spawnPla(); 
+//player.posX = -1
 
 
 
