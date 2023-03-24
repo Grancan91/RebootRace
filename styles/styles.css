@@ -69,11 +69,13 @@ body{
 }
 
 .player1{
+
     width: 5vw;
     height: 15vh;
     background-color: yellow;
     position: absolute;
     bottom:10px;
+     
 }
 .rival {
     width: 5vw;
