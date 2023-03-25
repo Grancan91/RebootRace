@@ -5,6 +5,7 @@ body{
     background-color: black;
     display: flex;
     justify-content: center;
+    overflow: hidden;
 }
 
 .container_game{
@@ -72,11 +73,10 @@ body{
     position: absolute;
     bottom:10px;
     left: 0px;
-    
 }
 .rival {
-    width: 5vw;
-    height: 15vh;
+    width: 100px;
+    height: 150px;
     background-color: rgb(59, 241, 13);
     position: absolute;
     top: 10px;
