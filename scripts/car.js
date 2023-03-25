@@ -1,20 +1,43 @@
-function Car(){
-    this.posLeft
-    this.posRight
+
+//Prototipo
+function Cars(vida,posX,posY,speedX,speedY,size){
+    this.vida = vida
+    this.posX = posX
+    this.posY = posY
+    this.speedX = speedX
+    this.speedY = speedY
+    this.size = size
 }
 // Coche del Jugador
-var player = {
-    vida:3,
-    score:0,
-    posX:1,
-    posY:1,
-    size: 100
+function Player(score,Vida, posX, posY, speedX, speedY, size){
+    Cars.call(this, Vida, posX, posY, speedX, speedY, size)
+    this.score = 0
+}
+Player.prototype = Object.create(Cars.prototype)
+Player.prototype.constructor = Player
+
+//New player with Start parameters.
+var player = new Player(
+    0,      //score
+    3,      //vida
+    300,    //posX
+    300,    //posY
+    80,     //speedX
+    200,    //sppedY
+    100     //size
+    )
+
+Player.prototype.start = function(){
+
+}
+//Recive un ObjPlayer con la nueva posX -> Injecta en DOM
+Player.prototype.newPosX = function (player){
+    var playerCar = document.querySelector('.player1');
+    playerCar.setAttribute('style', `transform: translateX(${player.posX}px)`)
 }
 
-//Movimiento del coche Player 
-playerCar = document.querySelector('.player1');
-var board = document.querySelector('.screen_game_mid');
 //Añadiendo captura de eventos al pulsar tecla.
+/*
 const tecla = window.addEventListener("keydown", function (event) {
     var movement = 100
     
@@ -26,23 +49,4 @@ const tecla = window.addEventListener("keydown", function (event) {
     }
     playerCar.setAttribute('style', `transform: translateX(${player.posX}px)`)
 });
-
-
-
-borderMapColission()
-//style = "left:1vh; right:1vh; bottom: 10px;
-
-// Calculando referencia del coche a través del scroll.Width (referencia)
-/*
-function spawnPla (){
-
-    var spawn=Math.floor(board.scrollWidth/2)
-    console.log(spawn)
-
-}
-spawnPla(); 
-//player.posX = -1
 */
-
-
-//player.setAttribute('style', `transform: translateX(${player.posX}px)`)
