@@ -3,6 +3,22 @@
 
 window.addEventListener("keydown", function (e) { whatWant(e)});
 
+function startGame(){
+
+}
+function gameOver(){
+
+}
+function restartGame(){
+
+}
+function randomRivals(){
+
+}
+function gameProgres(){
+    
+}
+
 function whatWant(e){
     console.log(`Key press: ${e.key}, P.posX:${player.posX} P.posY:${player.posY}`)
     //Player posX Movement

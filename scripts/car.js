@@ -22,15 +22,19 @@ var player = new Player(
     0,      //score
     3,      //vida
     300,    //posX
-    0,    //posY
+    0,      //posY
     80,     //speedX
     100,    //sppedY
     100     //size
 )
-
-Player.prototype.start = function(){
-
-}
+var rivalCar  = new Cars(
+    3,      //vida
+    300,    //posX
+    0,      //posY
+    80,     //speedX
+    10,    //speedY
+    100     //size
+    )
 
 //Recive un ObjPlayer con la nueva posX -> Injecta en DOM
 Player.prototype.newPosX = function (player){
@@ -44,18 +48,10 @@ Player.prototype.newPosY = function (player){
     playerCarY.setAttribute('style', `transform: translateY(${player.posY}px)`)
 }
 
-var rivalCar  = new Cars(
-    3,      //vida
-    300,    //posX
-    0,    //posY
-    80,     //speedX
-    10,    //speedY
-    100     //size
-    )
-    
+
     var rivalIntervalID
     var screen = document.querySelector('.screen_game_mid')
-
+    
 Cars.prototype.newRival = function(){
     //Mostrar en HTML
     const createRival = document.createElement('div')
@@ -65,15 +61,17 @@ Cars.prototype.newRival = function(){
     rivalIntervalID = setInterval(rivalCar.newPosY,50)
 }
 
+//Move rival -> Y lo elimina al final.
 Cars.prototype.newPosY = function (){
+    var rivalDOM = document.querySelector('.rival');
     //posY > Maximo de la pantalla.
-    if(rivalCar.posY < 1100){
+    if(rivalCar.posY < 1000){
     rivalCar.posY += rivalCar.speedY;
     } else {
         clearInterval(rivalIntervalID)
-//        screen.removeChild(rivalDOM)
+        screen.removeChild(rivalDOM)
     }
-    var rivalDOM = document.querySelector('.rival');
     rivalDOM.setAttribute('style', `transform: translateY(${rivalCar.posY}px)`)
 }
+
 rivalCar.newRival(rivalCar)
