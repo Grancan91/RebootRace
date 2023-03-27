@@ -84,7 +84,31 @@ Cars.prototype.checkCollisionRival = function () {
     var rivalLeftBottom = rivalCar.posY + rivalCar.height;
     var rivalRigthTop = rivalCar.posX + rivalCar.width;
     var rivalRigthBottom = rivalLeftBottom + rivalCar.width;
-   
+  
+    
+    //Colisión Ezq Izquierda
+    if( player.posY <= rivalCar.posY + rivalCar.height &&
+        player.posY >= rivalCar.posY &&
+        player.posX >= rivalCar.posX &&
+        player.posX <= rivalCar.posX + rivalCar.width){
+        console.log("Colisión Top Left")
+        }
+
+    if( player.posY <= rivalCar.posY + rivalCar.height &&
+        player.posY + player.height >= rivalCar.posY &&
+        player.posX + player.width >= rivalCar.posX &&
+        player.posX <= rivalCar.posX + rivalCar.width){
+        console.log("Colisión Top Right")
+        }
+    
+    
+
+
+
+
+
+
+    /*
     console.log(`Player X: ${player.posX} Y: ${player.posY}`)
     console.log(`Rival X: ${rivalCar.posX} Y: ${rivalCar.posY + rivalCar.height}`)
 
@@ -109,7 +133,7 @@ Cars.prototype.checkCollisionRival = function () {
         //Linea de blocking
 
         
-
+*/
 
    
    
