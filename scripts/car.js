@@ -95,7 +95,7 @@ Cars.prototype.checkCollisionRival = function () {
             console.log("bucle 2 - Colisión")
             if (rivalRigthTop > player.posX) {
                 console.log("bucle 3")
-                if (rivalRigthTop > player.posX){
+                if (rivalRigthBottom > player.posX || rivalLeftBottom < player.posX + player.width){
                     console.log("done")
 
                 }
