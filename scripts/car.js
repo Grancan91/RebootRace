@@ -57,49 +57,92 @@ Cars.prototype.newRival = function(){
     screen.appendChild(createRival)
     //var interval  = Math.floor(Math.random()*10)
     //Moivmiento Vertical del
-    rivalIntervalID = setInterval(rivalCar.rivalMove,1000)
+    rivalIntervalID = setInterval(rivalCar.rivalMove,300)
 }
 
 //Move rival -> Y lo elimina al final.
+
+
+/***********BUG EN COCHE RIVAL SI NO SE INICIALIZA EL PLAYER (APROX 360px) **********/
 
 Cars.prototype.rivalMove = function (){
     var rivalDOM = document.querySelector('.rival');
     rivalCar.posY += rivalCar.speedY;
 
-    if(rivalCar.checkCollisionRival()){
-        //console.log("If - checkColision")
-        //Eliminar Rival/Parar Timer
-        //clearInterval(rivalIntervalID)
-        //screen.removeChild(rivalDOM)
-    } else {
+
+// Condictional for rival's progress until screen's final
+    if (rivalCar.posY < 800){
+        rivalCar.posY += rivalCar.speedY;
+
+        // Condicional check the Collision against the player
+
+        if (rivalCar.checkCollisionRival()) {
+            //console.log("If - checkColision")
+            //Eliminar Rival/Parar Timer
+            //clearInterval(rivalIntervalID)
+            //screen.removeChild(rivalDOM)
+        } else {
+        rivalDOM.style.top = `${rivalCar.posY}px`
+        }
+
+
+
     
-}
-    rivalDOM.style.top = `${rivalCar.posY}px`
+    }else{
+    //Eliminar Rival/Parar Timer
+        clearInterval(rivalIntervalID)
+        screen.removeChild(rivalDOM)
+    }
+   
 
 
 }
 
 Cars.prototype.checkCollisionRival = function () {
-    var rivalLeftTop = rivalCar.posY;
+   /* var rivalLeftTop = rivalCar.posY;
     var rivalLeftBottom = rivalCar.posY + rivalCar.height;
     var rivalRigthTop = rivalCar.posX + rivalCar.width;
-    var rivalRigthBottom = rivalLeftBottom + rivalCar.width;
+    var rivalRigthBottom = rivalLeftBottom + rivalCar.width; */
   
-    
-    //Colisión Ezq Izquierda
+    /* SOLO NECESITAMOS LAS DOS ÚLTIMAS PARA EL RIVALCAR
+
+    //Collision Top Left
     if( player.posY <= rivalCar.posY + rivalCar.height &&
         player.posY >= rivalCar.posY &&
         player.posX >= rivalCar.posX &&
         player.posX <= rivalCar.posX + rivalCar.width){
         console.log("Colisión Top Left")
         }
-
+    
+    // Collision Top Right
     if( player.posY <= rivalCar.posY + rivalCar.height &&
         player.posY + player.height >= rivalCar.posY &&
         player.posX + player.width >= rivalCar.posX &&
         player.posX <= rivalCar.posX + rivalCar.width){
         console.log("Colisión Top Right")
+        } 
+     */
+    
+    // Collision Bottom Left
+    if (rivalCar.posY <= player.posY + player.height &&
+        rivalCar.posY + rivalCar.height >= player.posY &&
+        rivalCar.posX <= player.posX + player.width &&
+        rivalCar.posX + rivalCar.width >= player.posX){
+        console.log("Colisión Bottom Rigth")
+        clearInterval(rivalIntervalID)
+        } 
+    
+    // Collision Bottom Rigth
+    if (rivalCar.posY <= player.posY &&
+        rivalCar.posY + rivalCar.height >= player.posY &&
+        rivalCar.posX <= player.posX + player.width &&
+        rivalCar.posX + rivalCar.width > player.posX){
+            console.log("Colisión Bottom Left")
+        clearInterval(rivalIntervalID)
         }
+    
+
+    
     
     
 
@@ -130,7 +173,7 @@ Cars.prototype.checkCollisionRival = function () {
         console.log("Vía libre")
 
     }
-        //Linea de blocking
+       
 
         
 */
@@ -139,9 +182,44 @@ Cars.prototype.checkCollisionRival = function () {
    
 }
  
-/*
-Cars.prototype.checkCollisionPlayer = function (){
 
+Cars.prototype.checkCollisionPlayer = function (){
+     //Collision Top Left
+    if( player.posY <= rivalCar.posY + rivalCar.height &&
+        player.posY >= rivalCar.posY &&
+        player.posX >= rivalCar.posX &&
+        player.posX <= rivalCar.posX + rivalCar.width){
+        console.log("Colisión Top Left")
+        }
+    
+    // Collision Top Right
+    if( player.posY <= rivalCar.posY + rivalCar.height &&
+        player.posY + player.height >= rivalCar.posY &&
+        player.posX + player.width >= rivalCar.posX &&
+        player.posX <= rivalCar.posX + rivalCar.width){
+        console.log("Colisión Top Right")
+        } 
+    
+    // Collision Bottom Left
+    if(player.posY <= rivalCar.posY + rivalCar.height &&
+        player.posY + player.height >= rivalCar.posY &&
+        player.posX <= rivalCar.posX + rivalCar.width &&
+        player.posX + player.width >= rivalCar.posX){
+        console.log("Colisión Bottom Rigth")
+        } 
+    
+    // Collision Bottom Rigth
+    if(player.posY <= rivalCar.posY &&
+        player.posY + player.height >= rivalCar.posY &&
+        player.posX <= rivalCar.posX + rivalCar.width &&
+        player.posX + player.width > rivalCar.posX){
+            console.log("Colisión Bottom Left")
+        }
+    
+
+
+
+/*
     if (player.posX < rivalCar.posX + rivalCar.width &&
         player.posY < rivalCar.posY + rivalCar.height &&
         player.posX + rivalCar.width > rivalCar.posX &&
@@ -179,7 +257,7 @@ Cars.prototype.checkCollisionPlayer = function (){
     } else {
         */
 
-
+}
     
 
 
