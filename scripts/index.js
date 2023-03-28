@@ -1,6 +1,6 @@
 //player.start
 //Keyboard EventListener -> Call -> whatWant(Event)
-import { player, rivalCar } from "./car.js";
+import { player, rivalCar, arrCar } from "./car.js";
 
 //import Player from "./car.js"
 // import Game from "./game.js";
@@ -16,29 +16,36 @@ window.addEventListener("keydown", function (e) { whatWant(e)});
 // var insertCoin = document.querySelector(".start_button");
 
 function inicio() {
-    // var insertCoin = document.querySelector(".start_button");
+    // var insertCoin = document.querySelector(".start_button");    
     insertCoin.addEventListener(("click"), function (e) {
         //insertCoin.setAttribute("class", "off")
         insertCoin.classList.add('off')
-        rivalCar.newRival(rivalCar)
+        // .newRival(rivalCar)
+        let id = 1
+        arrCar.forEach((rival) => {            
+            rival.newRival(id)
+            id++
+        });
+               
     })
 }
-
+var f 
 function startGame(){
     inicio();
+
+   
     //rivalCar.newRival(rivalCar)
 }
 
 function gameOver(){
-    gameOverScreen.classList.remove("off"); 
-    insertCoin.classList.remove("off")  
+    // gameOverScreen.classList.remove("off"); 
 
     
 }
 function restartGame(){
     inicio()
     gameOverScreen.classList.add("off"); 
-    
+   
 
 
 

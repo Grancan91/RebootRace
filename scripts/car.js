@@ -2,7 +2,7 @@ import gameOver from "./index.js"
 
 //Prototipo
 
-function Cars(vida,posX,posY,speedX,speedY,width,height){
+function Cars(vida,posX,posY,speedX,speedY,width,height,spriteId){
     this.vida = vida
     this.posX = posX
     this.posY = posY
@@ -10,6 +10,10 @@ function Cars(vida,posX,posY,speedX,speedY,width,height){
     this.speedY = speedY
     this.width = width
     this.height = height
+    this.spriteId = spriteId
+    this.dom
+    this.timer
+
 }
 
 // Coche del Jugador
@@ -31,15 +35,41 @@ var player = new Player(
     100,    //width
     150     //Heigth
 )
+
 var rivalCar  = new Cars(
     3,      //vida
     300,    //posX
     20,      //posY
     80,     //speedX
-    10,    //speedY
+    3,    //speedY
     100,    //width
-    150     //Heigth
+    150,     //Heigth
+    1       //id
     )
+
+var rivalCar1 = new Cars(
+    3,      //vida
+    600,    //posX
+    -100,      //posY
+    80,     //speedX
+    4,    //speedY
+    100,    //width
+    150,     //Heigth
+    2       //id
+)
+
+var rivalCar2 = new Cars(
+    3,      //vida
+    750,    //posX
+    -300,      //posY
+    80,     //speedX
+    7,    //speedY
+    100,    //width
+    150,     //Heigth
+    3       //id
+)
+
+var arrCar = [rivalCar, rivalCar1, rivalCar2];
 
 //Recive un ObjPlayer con la nueva posX -> Injecta en DOM
 Player.prototype.newPos = function (player){
@@ -51,51 +81,55 @@ Player.prototype.newPos = function (player){
 
 var rivalIntervalID
 var screen = document.querySelector('.screen_game_mid')
-Cars.prototype.newRival = function(){
+
+Cars.prototype.newRival = function(id){   
     //Mostrar en HTML
-    const createRival = document.createElement('div')
-    createRival.style.left = rivalCar.posX + "px"
-    createRival.setAttribute('class','rival')
-    screen.appendChild(createRival)
+    this.dom = document.createElement('div')
+    this.dom.style.left = this.posX + "px"
+    this.dom.style.top = this.posY + "px"
+    this.dom.setAttribute('class','rival')    
+    this.dom.setAttribute('id', this.spriteId)
+    screen.appendChild(this.dom)
     //var interval  = Math.floor(Math.random()*10)
     //Moivmiento Vertical delGAME OVER
-    rivalIntervalID = setInterval(rivalCar.rivalMove,300)
+    this.timer = setInterval(this.rivalMove,300) 
 }
-
-//Move rival -> Y lo elimina al final.
-
 
 /***********BUG EN COCHE RIVAL SI NO SE INICIALIZA EL PLAYER (APROX 360px) **********/
 
 Cars.prototype.rivalMove = function (){
-    var rivalDOM = document.querySelector('.rival');
-    rivalCar.posY += rivalCar.speedY;
-
-
-// Condictional for rival's progress until screen's final
-    if (rivalCar.posY < 800){
-        rivalCar.posY += rivalCar.speedY;
-
-        // Condicional check the Collision against the player
-
-        if (rivalCar.checkCollisionRival()) {
-            //console.log("If - checkColision")
-            //Eliminar Rival/Parar Timer
-            //clearInterval(rivalIntervalID)
-            //screen.removeChild(rivalDOM)
-        } else {
-        rivalDOM.style.top = `${rivalCar.posY}px`
-        }
-
-
-
     
-    }else{
-    //Eliminar Rival/Parar Timer
-        clearInterval(rivalIntervalID)
-        screen.removeChild(rivalDOM)
-    }
-   
+    arrCar.forEach(i => {
+        //arrCar[i].dom
+    
+       // var rivalDOM = document.querySelector('.rival');
+        i.posY += i.speedY;
+    
+    // Condictional for rival's progress until screen's final
+        if (i.posY < 800){
+            i.posY += i.speedY;
+    
+            // Condicional check the Collision against the player
+    
+            if (i.checkCollisionRival()) {
+                //console.log("If - checkColision")
+                //Eliminar Rival/Parar Timer
+                //clearInterval(rivalIntervalID)
+                //screen.removeChild(rivalDOM)
+            } else {
+            i.dom.style.top = `${i.posY}px`
+            }
+        
+        }else{
+        //Eliminar Rival/Parar Timer
+          
+           i.posY = -200
+            //screen.removeChild(i.dom)
+
+        }
+       
+        
+    });
 
 
 }
@@ -105,10 +139,10 @@ Cars.prototype.checkCollisionRival = function () {
     var rivalLeftBottom = rivalCar.posY + rivalCar.height;
     var rivalRigthTop = rivalCar.posX + rivalCar.width;
     var rivalRigthBottom = rivalLeftBottom + rivalCar.width; */
-  
+
     /* SOLO NECESITAMOS LAS DOS ÚLTIMAS PARA EL RIVALCAR
 
-    //Collision Top Left
+    //Collision Top LeftCreateRivals
     if( player.posY <= rivalCar.posY + rivalCar.height &&
         player.posY >= rivalCar.posY &&
         player.posX >= rivalCar.posX &&
@@ -117,9 +151,7 @@ Cars.prototype.checkCollisionRival = function () {
         }
     
     // Collision Top Right
-    if( player.posY <= rivalCar.posY + rivalCar.height &&
-        player.posY + player.height >= rivalCar.posY &&
-        player.posX + player.width >= rivalCar.posX &&
+    if( player.posY <= rivalCar.posY + rivalCar.height &&CreateRivals
         player.posX <= rivalCar.posX + rivalCar.width){
         console.log("Colisión Top Right")
         } 
@@ -269,9 +301,10 @@ Cars.prototype.checkCollisionPlayer = function (){
     
 
 
-export {
+export {    
     player,
-    rivalCar
+    rivalCar,
+    arrCar
 } 
 
 
