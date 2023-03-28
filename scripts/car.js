@@ -43,8 +43,8 @@ var rivalCar  = new Cars(
 Player.prototype.newPos = function (player){
     var playerCar = document.querySelector('.player1');
     playerCar.style.left = `${player.posX}px`;
-    playerCar.style.top = `${player.posY}px`;
-    console.log("P1-X: " + player.posX)
+        playerCar.style.top = `${player.posY}px`;
+        console.log("P1-X: " + player.posX)
 }
 
 var rivalIntervalID
@@ -189,7 +189,7 @@ Cars.prototype.checkCollisionPlayer = function (){
         player.posY >= rivalCar.posY &&
         player.posX >= rivalCar.posX &&
         player.posX <= rivalCar.posX + rivalCar.width){
-        console.log("Colisión Top Left")
+        console.log("Player Collision Top Left")
         }
     
     // Collision Top Right
@@ -197,7 +197,7 @@ Cars.prototype.checkCollisionPlayer = function (){
         player.posY + player.height >= rivalCar.posY &&
         player.posX + player.width >= rivalCar.posX &&
         player.posX <= rivalCar.posX + rivalCar.width){
-        console.log("Colisión Top Right")
+        console.log("Player Collision Top Right")
         } 
     
     // Collision Bottom Left
@@ -205,7 +205,7 @@ Cars.prototype.checkCollisionPlayer = function (){
         player.posY + player.height >= rivalCar.posY &&
         player.posX <= rivalCar.posX + rivalCar.width &&
         player.posX + player.width >= rivalCar.posX){
-        console.log("Colisión Bottom Rigth")
+        console.log(" Player Collision Bottom Rigth")
         } 
     
     // Collision Bottom Rigth
@@ -213,7 +213,7 @@ Cars.prototype.checkCollisionPlayer = function (){
         player.posY + player.height >= rivalCar.posY &&
         player.posX <= rivalCar.posX + rivalCar.width &&
         player.posX + player.width > rivalCar.posX){
-            console.log("Colisión Bottom Left")
+        console.log("Player Collision Bottom Left")
         }
     
 
