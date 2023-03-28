@@ -5,17 +5,42 @@ import { player, rivalCar } from "./car.js";
 //import Player from "./car.js"
 // import Game from "./game.js";
 
+//Elementos traídos del DOM
+const insertCoin = document.querySelector(".start_button"); //Botón del START
+const gameOverScreen = document.querySelector(".over") // Pantalla del GAME OVER
+
+
 startGame()
 
 window.addEventListener("keydown", function (e) { whatWant(e)});
+// var insertCoin = document.querySelector(".start_button");
+
+function inicio() {
+    // var insertCoin = document.querySelector(".start_button");
+    insertCoin.addEventListener(("click"), function (e) {
+        //insertCoin.setAttribute("class", "off")
+        insertCoin.classList.add('off')
+        rivalCar.newRival(rivalCar)
+    })
+}
 
 function startGame(){
-    rivalCar.newRival(rivalCar)
+    inicio();
+    //rivalCar.newRival(rivalCar)
 }
-function gameOver(){
 
+function gameOver(){
+    gameOverScreen.classList.remove("off"); 
+    insertCoin.classList.remove("off")  
+
+    
 }
 function restartGame(){
+    inicio()
+    gameOverScreen.classList.add("off"); 
+    
+
+
 
 }
 function randomRivals(){
@@ -75,7 +100,7 @@ function whatWant(e){
 
 }
 
-
+export default gameOver;
 
 
 

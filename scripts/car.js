@@ -1,3 +1,5 @@
+import gameOver from "./index.js"
+
 //Prototipo
 
 function Cars(vida,posX,posY,speedX,speedY,width,height){
@@ -56,7 +58,7 @@ Cars.prototype.newRival = function(){
     createRival.setAttribute('class','rival')
     screen.appendChild(createRival)
     //var interval  = Math.floor(Math.random()*10)
-    //Moivmiento Vertical del
+    //Moivmiento Vertical delGAME OVER
     rivalIntervalID = setInterval(rivalCar.rivalMove,300)
 }
 
@@ -129,6 +131,7 @@ Cars.prototype.checkCollisionRival = function () {
         rivalCar.posX <= player.posX + player.width &&
         rivalCar.posX + rivalCar.width >= player.posX){
         console.log("Colisión Bottom Rigth")
+            gameOver()
         clearInterval(rivalIntervalID)
         } 
     
@@ -138,6 +141,7 @@ Cars.prototype.checkCollisionRival = function () {
         rivalCar.posX <= player.posX + player.width &&
         rivalCar.posX + rivalCar.width > player.posX){
             console.log("Colisión Bottom Left")
+            gameOver()
         clearInterval(rivalIntervalID)
         }
     
@@ -189,7 +193,7 @@ Cars.prototype.checkCollisionPlayer = function (){
         player.posY >= rivalCar.posY &&
         player.posX >= rivalCar.posX &&
         player.posX <= rivalCar.posX + rivalCar.width){
-        console.log("Player Collision Top Left")
+            gameOver()
         }
     
     // Collision Top Right
@@ -197,7 +201,8 @@ Cars.prototype.checkCollisionPlayer = function (){
         player.posY + player.height >= rivalCar.posY &&
         player.posX + player.width >= rivalCar.posX &&
         player.posX <= rivalCar.posX + rivalCar.width){
-        console.log("Player Collision Top Right")
+
+            gameOver()
         } 
     
     // Collision Bottom Left
@@ -205,7 +210,8 @@ Cars.prototype.checkCollisionPlayer = function (){
         player.posY + player.height >= rivalCar.posY &&
         player.posX <= rivalCar.posX + rivalCar.width &&
         player.posX + player.width >= rivalCar.posX){
-        console.log(" Player Collision Bottom Rigth")
+
+            gameOver()
         } 
     
     // Collision Bottom Rigth
@@ -213,7 +219,9 @@ Cars.prototype.checkCollisionPlayer = function (){
         player.posY + player.height >= rivalCar.posY &&
         player.posX <= rivalCar.posX + rivalCar.width &&
         player.posX + player.width > rivalCar.posX){
-        console.log("Player Collision Bottom Left")
+
+            gameOver()
+        
         }
     
 

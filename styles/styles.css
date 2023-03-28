@@ -50,17 +50,30 @@ body{
     width: 3vw;
     height: 6vh;
 }
+.over {
+    background-image: url("/images/Game-over-full.png");
+    position: absolute;
+    z-index: 1;
+    height: 700px;
+    width: 1600px;
+}
 .start_button{
-    background-color: aqua;
-    display: flex;
+    background-image: url(/images/Game\ over\ .png);
+    background-size: contain;
+    background-color: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 2;
+    left: 200px;
+    top: 400px;
     justify-content: center;
     align-items: center;
-    width: 20vw;
-    height: 10vh;
+    width: 32vw;
+    height: 18vh;
     border-radius: 20px;
+    display: flex;
 }
 .start_button > span{
-    color: red;
     font-size: 3em;
 }
 
@@ -77,6 +90,10 @@ body{
     background-color: rgb(59, 241, 13);
     position: absolute;
 }
+
 .off{
-    display: none;
+    display: none
+}
+.restart-button {
+    z-index: 2;
 }
