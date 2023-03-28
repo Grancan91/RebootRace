@@ -82,7 +82,11 @@ Player.prototype.newPos = function (player){
 var rivalIntervalID
 var screen = document.querySelector('.screen_game_mid')
 
+let speed = 300; // rapidez
+
 Cars.prototype.newRival = function(id){   
+
+    
     //Mostrar en HTML
     this.dom = document.createElement('div')
     this.dom.style.left = this.posX + "px"
@@ -92,7 +96,7 @@ Cars.prototype.newRival = function(id){
     screen.appendChild(this.dom)
     //var interval  = Math.floor(Math.random()*10)
     //Moivmiento Vertical delGAME OVER
-    this.timer = setInterval(this.rivalMove,300) 
+    this.timer = setInterval(this.rivalMove, speed) 
 }
 
 /***********BUG EN COCHE RIVAL SI NO SE INICIALIZA EL PLAYER (APROX 360px) **********/
@@ -100,13 +104,14 @@ Cars.prototype.newRival = function(id){
 Cars.prototype.rivalMove = function (){
     
     arrCar.forEach(i => {
+        console.log(i.posY)
         //arrCar[i].dom
     
        // var rivalDOM = document.querySelector('.rival');
         i.posY += i.speedY;
     
     // Condictional for rival's progress until screen's final
-        if (i.posY < 800){
+        if (i.posY < 1000){
             i.posY += i.speedY;
     
             // Condicional check the Collision against the player
@@ -124,7 +129,13 @@ Cars.prototype.rivalMove = function (){
         //Eliminar Rival/Parar Timer
           
            i.posY = -200
-            //screen.removeChild(i.dom)
+           //
+            //screen.removeChild(i.dom)}
+
+
+            // *********** POSIBILIDAD DE AÑADIR Math.floor(Math.random()* 950) *********
+            
+
 
         }
        
@@ -141,43 +152,40 @@ Cars.prototype.checkCollisionRival = function () {
     var rivalRigthBottom = rivalLeftBottom + rivalCar.width; */
 
     /* SOLO NECESITAMOS LAS DOS ÚLTIMAS PARA EL RIVALCAR
-
-    //Collision Top LeftCreateRivals
-    if( player.posY <= rivalCar.posY + rivalCar.height &&
-        player.posY >= rivalCar.posY &&
-        player.posX >= rivalCar.posX &&
-        player.posX <= rivalCar.posX + rivalCar.width){
-        console.log("Colisión Top Left")
-        }
-    
-    // Collision Top Right
-    if( player.posY <= rivalCar.posY + rivalCar.height &&CreateRivals
-        player.posX <= rivalCar.posX + rivalCar.width){
+}
         console.log("Colisión Top Right")
         } 
      */
     
-    // Collision Bottom Left
-    if (rivalCar.posY <= player.posY + player.height &&
-        rivalCar.posY + rivalCar.height >= player.posY &&
-        rivalCar.posX <= player.posX + player.width &&
-        rivalCar.posX + rivalCar.width >= player.posX){
+   
+
+   for(let i=0;i< arrCar.length;i++){
+
+  // Collision Bottom Left
+    if (arrCar[i].posY <= player.posY + player.height &&
+        arrCar[i].posY + arrCar[i].height >= player.posY &&
+        arrCar[i].posX <= player.posX + player.width &&
+        arrCar[i].posX + arrCar[i].width >= player.posX){
         console.log("Colisión Bottom Rigth")
-            gameOver()
-        clearInterval(rivalIntervalID)
+        if(player.life < 1){
+
+        //player.life --;
+        gameOver()
+        clearInterval(this.timer)
+        }
         } 
     
     // Collision Bottom Rigth
-    if (rivalCar.posY <= player.posY &&
-        rivalCar.posY + rivalCar.height >= player.posY &&
-        rivalCar.posX <= player.posX + player.width &&
-        rivalCar.posX + rivalCar.width > player.posX){
+    if (arrCar[i].posY <= player.posY &&
+        arrCar[i].posY + arrCar[i].height >= player.posY &&
+        arrCar[i].posX <= player.posX + player.width &&
+        arrCar[i].posX + arrCar[i].width > player.posX){
             console.log("Colisión Bottom Left")
             gameOver()
-        clearInterval(rivalIntervalID)
+        //clearInterval(this.timer)
         }
     
-
+   }
     
     
     
@@ -220,43 +228,47 @@ Cars.prototype.checkCollisionRival = function () {
  
 
 Cars.prototype.checkCollisionPlayer = function (){
+
+    for(let i = 0; i < arrCar.length; i++){
+
+   
      //Collision Top Left
-    if( player.posY <= rivalCar.posY + rivalCar.height &&
-        player.posY >= rivalCar.posY &&
-        player.posX >= rivalCar.posX &&
-        player.posX <= rivalCar.posX + rivalCar.width){
+    if( player.posY <= arrCar[i].posY + arrCar[i].height &&
+        player.posY >= arrCar[i].posY &&
+        player.posX >= arrCar[i].posX &&
+        player.posX <= arrCar[i].posX + arrCar[i].width){
             gameOver()
         }
     
     // Collision Top Right
-    if( player.posY <= rivalCar.posY + rivalCar.height &&
-        player.posY + player.height >= rivalCar.posY &&
-        player.posX + player.width >= rivalCar.posX &&
-        player.posX <= rivalCar.posX + rivalCar.width){
+    if( player.posY <= arrCar[i].posY + arrCar[i].height &&
+        player.posY + player.height >= arrCar[i].posY &&
+        player.posX + player.width >= arrCar[i].posX &&
+        player.posX <= arrCar[i].posX + arrCar[i].width){
 
             gameOver()
         } 
     
     // Collision Bottom Left
-    if(player.posY <= rivalCar.posY + rivalCar.height &&
-        player.posY + player.height >= rivalCar.posY &&
-        player.posX <= rivalCar.posX + rivalCar.width &&
-        player.posX + player.width >= rivalCar.posX){
+    if(player.posY <= arrCar[i].posY + arrCar[i].height &&
+        player.posY + player.height >= arrCar[i].posY &&
+        player.posX <= arrCar[i].posX + arrCar[i].width &&
+        player.posX + player.width >= arrCar[i].posX){
 
             gameOver()
         } 
     
     // Collision Bottom Rigth
-    if(player.posY <= rivalCar.posY &&
-        player.posY + player.height >= rivalCar.posY &&
-        player.posX <= rivalCar.posX + rivalCar.width &&
-        player.posX + player.width > rivalCar.posX){
+    if(player.posY <= arrCar[i].posY &&
+        player.posY + player.height >= arrCar[i].posY &&
+        player.posX <= arrCar[i].posX + arrCar[i].width &&
+        player.posX + player.width > arrCar[i].posX){
 
             gameOver()
         
         }
     
-
+    }
 
 
 /*

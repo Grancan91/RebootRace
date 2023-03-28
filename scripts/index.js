@@ -21,7 +21,7 @@ function inicio() {
         //insertCoin.setAttribute("class", "off")
         insertCoin.classList.add('off')
         // .newRival(rivalCar)
-        let id = 1
+        let id = 1;
         arrCar.forEach((rival) => {            
             rival.newRival(id)
             id++
@@ -38,7 +38,11 @@ function startGame(){
 }
 
 function gameOver(){
-    // gameOverScreen.classList.remove("off"); 
+    gameOverScreen.classList.remove("off");
+    
+    
+
+
 
     
 }

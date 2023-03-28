@@ -19,29 +19,30 @@ body{
 .screen_game{
     display: flex;
     align-items: center;
-    height: 700px;
+    height: 850px;
     width: 1600px;
+    justify-content: center;
 }
 .screen_game_side{
     background-color: green;
     width: 300px;
-    height: 700px;
+    height: 850px;
 }
 
 .screen_game_mid {
     background-color: rgb(68, 68, 68);
     width: 1000px;
-    height: 700px;
+    height: 850px;
     display: flex;
     position: relative;
-   
+    overflow: hidden;
 }
 .piano {
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     width: 30px;
-    height: 700px;
+    height: 850px;
 }
 .baldosa:nth-child(2n+1){
     background-color: rgb(255, 24, 24);
@@ -52,10 +53,18 @@ body{
 }
 .over {
     background-image: url("/images/Game-over-full.png");
+    background-repeat: no-repeat;
     position: absolute;
     z-index: 1;
     height: 700px;
-    width: 1600px;
+    width: 1500px;
+    display:none;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    border-radius: 40px;
+    
+    
 }
 .start_button{
     background-image: url(/images/Game\ over\ .png);
@@ -94,6 +103,37 @@ body{
 .off{
     display: none
 }
-.restart-button {
-    z-index: 2;
+
+
+
+
+
+
+
+
+
+.btn-11 {
+    border: none;
+    background-color: rgba(245, 245, 245, 0.089);
+    overflow: hidden;
+    height: 100px;
+    width: 300px;
+    font-size:xx-large;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 15px;
+    color:aliceblue;
+    border-style: solid;
+    transition: 1s;
+
+    }
+
+.btn-11:hover{
+    background-color: rgb(206, 138, 54);
+    color: black;
+    font-weight: bolder;
+    width: 320px;
+    height: 120px;
+    font-size: 40px;
+    transition: 1s;
+
 }
