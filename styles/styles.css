@@ -94,12 +94,18 @@ body{
     border-radius: 30px;
     background-color: yellow;
     position: absolute;
+   
 }
 .rival {
     width: 100px;
     height: 150px;
-    background-color: rgb(59, 241, 13);
+    background-image: url(/images/New\ Piskel-2.png.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     position: absolute;
+    border-radius: 10px;
+    background-color: red;
 }
 
 .off{

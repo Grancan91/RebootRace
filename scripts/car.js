@@ -1,4 +1,4 @@
-import gameOver from "./index.js"
+import { gameOver, crash} from "./index.js"
 
 //Prototipo
 
@@ -30,10 +30,10 @@ var player = new Player(
     3,      //vida
     400,    //posX
     700,      //posY
-    80,     //speedX
-    100,    //sppedY
-    100,    //width
-    150     //Heigth
+    15,     //speedX
+    15,    //sppedY
+    80,    //width
+    130     //Heigth
 )
 
 var rivalCar  = new Cars(
@@ -41,9 +41,9 @@ var rivalCar  = new Cars(
     300,    //posX
     -300,      //posY
     80,     //speedX
-    3,    //speedY
-    100,    //width
-    150,     //Heigth
+    2,    //speedY
+    80,    //width
+    130,     //Heigth
     1       //id
     )
 
@@ -53,8 +53,8 @@ var rivalCar1 = new Cars(
     -300,      //posY
     80,     //speedX
     4,    //speedY
-    100,    //width
-    150,     //Heigth
+    80,    //width
+    130,     //Heigth
     2       //id
 )
 
@@ -63,12 +63,33 @@ var rivalCar2 = new Cars(
     750,    //posX
     -300,      //posY
     80,     //speedX
-    7,    //speedY
-    100,    //width
-    150,     //Heigth
+    6,    //speedY
+    80,    //width
+    130,     //Heigth
     3       //id
 )
-var arrCar = [rivalCar, rivalCar1, rivalCar2];
+var rivalCar3 = new Cars(
+    3,      //vida
+    750,    //posX
+    -300,      //posY
+    80,     //speedX
+    2,    //speedY
+    80,    //width
+    130,     //Heigth
+    3       //id
+)
+var rivalCar4 = new Cars(
+    3,      //vida
+    750,    //posX
+    -300,      //posY
+    80,     //speedX
+    1,    //speedY
+    80,    //width
+    130,     //Heigth
+    3       //id
+)
+var arrCar = [rivalCar, rivalCar1, rivalCar2, rivalCar3, rivalCar4];
+
 
 //Recive un ObjPlayer con la nueva posX -> Injecta en DOM
 Player.prototype.newPos = function (player){
@@ -77,6 +98,7 @@ Player.prototype.newPos = function (player){
         playerCar.style.top = `${player.posY}px`;
         console.log("P1-X: " + player.posX)
 }
+
 
 var rivalIntervalID
 var screen = document.querySelector('.screen_game_mid')
@@ -103,29 +125,10 @@ Cars.prototype.delRival = function () {
 
     arrCar.forEach(element => {
         
-        console.log(element.dom)
-        screen.removeChild(element.dom)
-        clearInterval(element.timer)
+       console.log(element.dom)
+       screen.removeChild(element.dom)
+       clearInterval(element.timer)
  
-        /* 
-       var nrandom = Math.floor(Math.random() * (5))       
-        switch (nrandom) {
-            case 1:
-                element.posX = 200;                
-                break;
-            case 2:
-                element.posX = 400;
-                break;
-            case 3:
-                element.posX = 600;
-                element.posY 
-                break;
-            case 4:
-                element.posX = 800;
-                break;        
-        }  
-         */
-
        element.posY = -300
        
       
@@ -135,6 +138,9 @@ Cars.prototype.delRival = function () {
 
 /***********BUG EN COCHE RIVAL SI NO SE INICIALIZA EL PLAYER (APROX 360px) **********/
 
+
+var anterior = 1
+var random
 Cars.prototype.rivalMove = function (){
     
     arrCar.forEach(i => {
@@ -159,28 +165,40 @@ Cars.prototype.rivalMove = function (){
         
         }else{
         //Eliminar Rival/Parar Timer
-        console.log("llegue abajo"+ i)
+            player.score += 100
         i.posY = -250        
-          
-         switch (Math.floor(Math.random() * 5)) {
-            case 1:
-                i.posX = 200;
-         
-                break;
-            case 2:
-                i.posX = 400;
-         
-                break;
-            case 3:
-                i.posX = 600;
-                break;
-            case 4:
-                i.posX = 800;
-                break;
 
-        }  
- 
-   
+        random = Math.ceil(Math.random() * 6)
+
+        if(random != anterior){
+      
+            switch (random) {
+                case 1:
+                    i.posX = 20;
+                    break;
+                case 2:
+                    i.posX = 140;
+                    break;
+                case 3:
+                    i.posX = 260;
+                    break;
+                case 4:
+                    i.posX = 380;
+                    break;
+                case 5:
+                    i.posX = 500;
+                    break;
+                case 6:
+                    i.posX = 620;
+                    break;
+
+            }
+            anterior = random
+
+        } else {
+            random = Math.ceil(Math.random() * 4)
+        }
+          
         }
        
     });
@@ -221,6 +239,7 @@ Cars.prototype.checkCollisionRival = function () {
 
 Cars.prototype.checkCollisionPlayer = function (){
 
+
     for(let i = 0; i < arrCar.length; i++){
    
      //Collision Top Left
@@ -228,6 +247,7 @@ Cars.prototype.checkCollisionPlayer = function (){
         player.posY >= arrCar[i].posY &&
         player.posX >= arrCar[i].posX &&
         player.posX <= arrCar[i].posX + arrCar[i].width){
+           
             gameOver()
         }
     
@@ -245,7 +265,7 @@ Cars.prototype.checkCollisionPlayer = function (){
         player.posY + player.height >= arrCar[i].posY &&
         player.posX <= arrCar[i].posX + arrCar[i].width &&
         player.posX + player.width >= arrCar[i].posX){
-
+            
             gameOver()
         } 
     
@@ -254,7 +274,7 @@ Cars.prototype.checkCollisionPlayer = function (){
         player.posY + player.height >= arrCar[i].posY &&
         player.posX <= arrCar[i].posX + arrCar[i].width &&
         player.posX + player.width > arrCar[i].posX){
-
+            
             gameOver()
         
         }
