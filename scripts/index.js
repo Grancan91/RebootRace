@@ -11,7 +11,7 @@ const restartBtn = document.querySelector(".restart-button") // Restart Button
 insertCoin.addEventListener(("click"), function (e) {
     insertCoin.classList.add('off')
     let id = 1;
-    arrCar.forEach((rival) => {            
+    arrCar.forEach((rival) => {  
         rival.newRival(id)
         id++
     });
@@ -25,10 +25,7 @@ function gameOver(){
     setTimeout(function(){
         gameOverScreen.classList.remove("off");
     }, 900);
-/*     arrCar.forEach((rival) => {
-        rival.posX = Math.random() * 800
-        rival.posY = Math.random() * (-800)
-    }); */
+  
     player.posX = 400
     player.posY = 700
     
@@ -39,13 +36,8 @@ function gameOver(){
 restartBtn.addEventListener(("click"), function (e) { restartGame() });
 
 function restartGame(){
-    
     gameOverScreen.classList.add("off"); 
-    insertCoin.classList.remove("off");
-    
-     
-    
-    
+    insertCoin.classList.remove("off");  
 }
 
 function whatWant(e){
@@ -94,6 +86,19 @@ function whatWant(e){
 }
 
 export default gameOver;
+
+
+
+
+
+// bloquear movimiento del palyer tras el gameover
+
+
+// añadir carriles 
+
+
+
+
 
 
 

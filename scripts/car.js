@@ -39,7 +39,7 @@ var player = new Player(
 var rivalCar  = new Cars(
     3,      //vida
     300,    //posX
-    20,      //posY
+    -300,      //posY
     80,     //speedX
     3,    //speedY
     100,    //width
@@ -50,7 +50,7 @@ var rivalCar  = new Cars(
 var rivalCar1 = new Cars(
     3,      //vida
     600,    //posX
-    -100,      //posY
+    -300,      //posY
     80,     //speedX
     4,    //speedY
     100,    //width
@@ -81,7 +81,7 @@ Player.prototype.newPos = function (player){
 var rivalIntervalID
 var screen = document.querySelector('.screen_game_mid')
 
-let speed = 300; // rapidez
+let speed = 150; // rapidez
 
 Cars.prototype.newRival = function(id){   
 
@@ -99,16 +99,36 @@ Cars.prototype.newRival = function(id){
 
 Cars.prototype.delRival = function () {
 
-    var arrCar2 = document.getElementsByClassName("rival")
-    console.log(screen)
+   // var arrCar2 = document.getElementsByClassName("rival")
+
     arrCar.forEach(element => {
         
         console.log(element.dom)
         screen.removeChild(element.dom)
         clearInterval(element.timer)
-        element.posX = Math.random() * (300)
-        element.posY = -200
-        //element.dom = undefined
+ 
+        /* 
+       var nrandom = Math.floor(Math.random() * (5))       
+        switch (nrandom) {
+            case 1:
+                element.posX = 200;                
+                break;
+            case 2:
+                element.posX = 400;
+                break;
+            case 3:
+                element.posX = 600;
+                element.posY 
+                break;
+            case 4:
+                element.posX = 800;
+                break;        
+        }  
+         */
+
+       element.posY = -300
+       
+      
     });
     
 }
@@ -120,7 +140,8 @@ Cars.prototype.rivalMove = function (){
     arrCar.forEach(i => {
     
         i.posY += i.speedY;
-    
+       
+           
     // Condictional for rival's progress until screen's final
         if (i.posY < 1000){
             i.posY += i.speedY;
@@ -129,15 +150,36 @@ Cars.prototype.rivalMove = function (){
             if (i.checkCollisionRival()) {
                 gameOver()
                 i.dom.style.top = `${i.posY}px`
+                i.dom.style.left = `${i.posX}px`
                 
             } else {
                 i.dom.style.top = `${i.posY}px`
+                i.dom.style.left = `${i.posX}px`
             }
         
         }else{
         //Eliminar Rival/Parar Timer
+        console.log("llegue abajo"+ i)
+        i.posY = -250        
           
-           i.posY = -200
+         switch (Math.floor(Math.random() * 5)) {
+            case 1:
+                i.posX = 200;
+         
+                break;
+            case 2:
+                i.posX = 400;
+         
+                break;
+            case 3:
+                i.posX = 600;
+                break;
+            case 4:
+                i.posX = 800;
+                break;
+
+        }  
+ 
    
         }
        
