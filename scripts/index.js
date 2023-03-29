@@ -1,73 +1,64 @@
-//player.start
-//Keyboard EventListener -> Call -> whatWant(Event)
 import { player, rivalCar, arrCar } from "./car.js";
-
-//import Player from "./car.js"
-// import Game from "./game.js";
 
 //Elementos traídos del DOM
 const insertCoin = document.querySelector(".start_button"); //Botón del START
 const gameOverScreen = document.querySelector(".over") // Pantalla del GAME OVER
+const restartBtn = document.querySelector(".restart-button") // Restart Button
 
 
-startGame()
 
-window.addEventListener("keydown", function (e) { whatWant(e)});
-// var insertCoin = document.querySelector(".start_button");
+// var insertCoin = document.querySelector(".start_button");    
+insertCoin.addEventListener(("click"), function (e) {
+    insertCoin.classList.add('off')
+    let id = 1;
+    arrCar.forEach((rival) => {            
+        rival.newRival(id)
+        id++
+    });
+})
 
-function inicio() {
-    // var insertCoin = document.querySelector(".start_button");    
-    insertCoin.addEventListener(("click"), function (e) {
-        //insertCoin.setAttribute("class", "off")
-        insertCoin.classList.add('off')
-        // .newRival(rivalCar)
-        let id = 1;
-        arrCar.forEach((rival) => {            
-            rival.newRival(id)
-            id++
-        });
-               
-    })
-}
-var f 
-function startGame(){
-    inicio();
+    window.addEventListener("keydown", function (e) { whatWant(e) });
 
-   
-    //rivalCar.newRival(rivalCar)
-}
 
 function gameOver(){
-    gameOverScreen.classList.remove("off");
-    
-    
-
-
-
-    
-}
-function restartGame(){
-    inicio()
-    gameOverScreen.classList.add("off"); 
    
-
-
-
-}
-function randomRivals(){
-
-}
-function gameProgres(){
+    setTimeout(function(){
+        gameOverScreen.classList.remove("off");
+    }, 900);
+/*     arrCar.forEach((rival) => {
+        rival.posX = Math.random() * 800
+        rival.posY = Math.random() * (-800)
+    }); */
+    player.posX = 400
+    player.posY = 700
+    
+   rivalCar.delRival();
     
 }
+
+restartBtn.addEventListener(("click"), function (e) { restartGame() });
+
+function restartGame(){
+    
+    gameOverScreen.classList.add("off"); 
+    insertCoin.classList.remove("off");
+    
+     
+    
+    
+}
+
 function whatWant(e){
     //Player posX - posY Movement
         switch (e.key) {
             case "ArrowLeft":
-                if ((player.posX + player.width) > 110) { //Left Border Map
+                if ((player.posX + player.width) > 160) { //Left Border Map
                     player.posX -= player.speedX;
+                    
                     // LLama funcion que actualiza la imagen en el ejeX del player.
                     player.newPos(player)
+                    player.checkCollisionPlayer()  
+                    
                 }
                 break;
             case "ArrowRight":
@@ -75,39 +66,30 @@ function whatWant(e){
                     player.posX += player.speedX;
                     //LLama funcion que actualiza la imagen en el ejeX del player.
                     player.newPos(player)
+                    player.checkCollisionPlayer()
+                    
 
                 }
                 break;
             case "ArrowUp":
                 if ((player.posY + player.height) > 150) { //Right Border Map
                     player.posY -= player.speedY;
-                    //LLama funcion que actualiza la imagen en el ejeX del player.
                     player.newPos(player)
+                    player.checkCollisionPlayer()
+             
 
                 }
                 break;
             case "ArrowDown":
-                if ((player.posY + player.height) < 690) { //Right Border Map
+                if ((player.posY + player.height) < 800) { //Right Border Map
                     player.posY += player.speedY;
-                    //console.log(player.posY)
-                    //LLama funcion que actualiza la imagen en el ejeX del player.
-                    player.newPos(player)
+                   
+                    player.newPos(player)                    
+                    player.checkCollisionPlayer()
 
                 }
                 break;
-        }
-
-        if (player.checkCollisionPlayer()){
-            // PIERDES UNA VIDA
-            /* if (lives === 0){
-            GAME OVER
-            } */
-            
-        }
-
-        console.log(`Rival-PosY: ${rivalCar.posY}/ Rival-PosX: ${rivalCar.posX}`)
-        console.log(`Rival-PosY: ${player.posY}/ Rival-PosX: ${player.posX}`)
-
+        }       
 
 }
 
@@ -123,4 +105,3 @@ export default gameOver;
 
 
 
-//player.newPosX

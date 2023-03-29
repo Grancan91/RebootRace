@@ -28,8 +28,8 @@ Player.prototype.constructor = Player
 var player = new Player(
     0,      //score
     3,      //vida
-    300,    //posX
-    500,      //posY
+    400,    //posX
+    700,      //posY
     80,     //speedX
     100,    //sppedY
     100,    //width
@@ -68,7 +68,6 @@ var rivalCar2 = new Cars(
     150,     //Heigth
     3       //id
 )
-
 var arrCar = [rivalCar, rivalCar1, rivalCar2];
 
 //Recive un ObjPlayer con la nueva posX -> Injecta en DOM
@@ -86,7 +85,6 @@ let speed = 300; // rapidez
 
 Cars.prototype.newRival = function(id){   
 
-    
     //Mostrar en HTML
     this.dom = document.createElement('div')
     this.dom.style.left = this.posX + "px"
@@ -94,9 +92,25 @@ Cars.prototype.newRival = function(id){
     this.dom.setAttribute('class','rival')    
     this.dom.setAttribute('id', this.spriteId)
     screen.appendChild(this.dom)
-    //var interval  = Math.floor(Math.random()*10)
+   
     //Moivmiento Vertical delGAME OVER
     this.timer = setInterval(this.rivalMove, speed) 
+}
+
+Cars.prototype.delRival = function () {
+
+    var arrCar2 = document.getElementsByClassName("rival")
+    console.log(screen)
+    arrCar.forEach(element => {
+        
+        console.log(element.dom)
+        screen.removeChild(element.dom)
+        clearInterval(element.timer)
+        element.posX = Math.random() * (300)
+        element.posY = -200
+        //element.dom = undefined
+    });
+    
 }
 
 /***********BUG EN COCHE RIVAL SI NO SE INICIALIZA EL PLAYER (APROX 360px) **********/
@@ -104,10 +118,7 @@ Cars.prototype.newRival = function(id){
 Cars.prototype.rivalMove = function (){
     
     arrCar.forEach(i => {
-        console.log(i.posY)
-        //arrCar[i].dom
     
-       // var rivalDOM = document.querySelector('.rival');
         i.posY += i.speedY;
     
     // Condictional for rival's progress until screen's final
@@ -115,49 +126,28 @@ Cars.prototype.rivalMove = function (){
             i.posY += i.speedY;
     
             // Condicional check the Collision against the player
-    
             if (i.checkCollisionRival()) {
-                //console.log("If - checkColision")
-                //Eliminar Rival/Parar Timer
-                //clearInterval(rivalIntervalID)
-                //screen.removeChild(rivalDOM)
+                gameOver()
+                i.dom.style.top = `${i.posY}px`
+                
             } else {
-            i.dom.style.top = `${i.posY}px`
+                i.dom.style.top = `${i.posY}px`
             }
         
         }else{
         //Eliminar Rival/Parar Timer
           
            i.posY = -200
-           //
-            //screen.removeChild(i.dom)}
-
-
-            // *********** POSIBILIDAD DE AÑADIR Math.floor(Math.random()* 950) *********
-            
-
-
+   
         }
        
-        
     });
 
-
 }
+
 
 Cars.prototype.checkCollisionRival = function () {
-   /* var rivalLeftTop = rivalCar.posY;
-    var rivalLeftBottom = rivalCar.posY + rivalCar.height;
-    var rivalRigthTop = rivalCar.posX + rivalCar.width;
-    var rivalRigthBottom = rivalLeftBottom + rivalCar.width; */
 
-    /* SOLO NECESITAMOS LAS DOS ÚLTIMAS PARA EL RIVALCAR
-}
-        console.log("Colisión Top Right")
-        } 
-     */
-    
-   
 
    for(let i=0;i< arrCar.length;i++){
 
@@ -167,13 +157,10 @@ Cars.prototype.checkCollisionRival = function () {
         arrCar[i].posX <= player.posX + player.width &&
         arrCar[i].posX + arrCar[i].width >= player.posX){
         console.log("Colisión Bottom Rigth")
-        if(player.life < 1){
-
-        //player.life --;
+    
         gameOver()
         clearInterval(this.timer)
-        }
-        } 
+    } 
     
     // Collision Bottom Rigth
     if (arrCar[i].posY <= player.posY &&
@@ -181,48 +168,11 @@ Cars.prototype.checkCollisionRival = function () {
         arrCar[i].posX <= player.posX + player.width &&
         arrCar[i].posX + arrCar[i].width > player.posX){
             console.log("Colisión Bottom Left")
-            gameOver()
-        //clearInterval(this.timer)
-        }
-    
-   }
-    
-    
-    
-
-
-
-
-
-
-    /*
-    console.log(`Player X: ${player.posX} Y: ${player.posY}`)
-    console.log(`Rival X: ${rivalCar.posX} Y: ${rivalCar.posY + rivalCar.height}`)
-
-    if (rivalLeftBottom > player.posY ){
-        
-        console.log(`bucle 1 - Colisión -Left Top ${rivalLeftTop} // Rigth Top ${rivalRigthTop} //LeftBottom: ${rivalLeftBottom} // RigthBottom: ${rivalRigthBottom}`)
-        if (rivalLeftBottom > player.posX) { 
-            console.log("bucle 2 - Colisión")
-            if (rivalRigthTop > player.posX) {
-                console.log("bucle 3")
-                if (rivalRigthBottom > player.posX || rivalLeftBottom < player.posX + player.width){
-                    console.log("done")
-
-                }
-            }
-        // Si la esquina superior del player es menor que la esquina Rigth Top del Rival
-        }         
-    } else {
-        console.log("Vía libre")
-
+        gameOver()
+        clearInterval(this.timer)
     }
-       
-
-        
-*/
-
-   
+    
+   } 
    
 }
  
@@ -230,7 +180,6 @@ Cars.prototype.checkCollisionRival = function () {
 Cars.prototype.checkCollisionPlayer = function (){
 
     for(let i = 0; i < arrCar.length; i++){
-
    
      //Collision Top Left
     if( player.posY <= arrCar[i].posY + arrCar[i].height &&
@@ -270,45 +219,6 @@ Cars.prototype.checkCollisionPlayer = function (){
     
     }
 
-
-/*
-    if (player.posX < rivalCar.posX + rivalCar.width &&
-        player.posY < rivalCar.posY + rivalCar.height &&
-        player.posX + rivalCar.width > rivalCar.posX &&
-        player.posY + rivalCar.height > rivalCar.posY) {
-
-        console.log("Colisión")
-
-        // else if para player 
-    } else if (player.posY < rivalCar.posY + rivalCar.height &&
-        player.posX < rivalCar.posX + rivalCar.width &&
-        player.posX + player.height > rivalCar.posY &&
-        player.posY + rivalCar.width > rivalCar.posX) {
-
-        console.log("Colisión")
-
-
-    } else {
-        console.log("No Colisión")
-
-
-    }
-
-
-
-} */
-
-    /* if (player.posY > rivalCar.posY 
-        && (rivalCar.posY + rivalCar.height) > player.posY
-        && player.posX < (rivalCar.posX + rivalCar.width)
-        && (rivalCar.posX + rivalCar.width) > player.posX){
-   
-        console.log("Colisión")
-        
-
-    } else {
-        */
-
 }
     
 
@@ -319,14 +229,3 @@ export {
     arrCar
 } 
 
-
-
-//Papelera
-/*
-//Unir Eje X e eje y en 1
-Player.prototype.newPosY = function (player){
-    var playerCarY = document.querySelector('.player1');
-   // playerCarY.setAttribute('style', `top:${player.posY}px`)
-    
-}
-*/

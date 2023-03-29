@@ -55,15 +55,15 @@ body{
     background-image: url("/images/Game-over-full.png");
     background-repeat: no-repeat;
     position: absolute;
-    z-index: 1;
+    display:flex;
+    z-index: 2;
     height: 700px;
     width: 1500px;
-    display:none;
     justify-content: center;
     align-items: center;
     background-color: red;
     border-radius: 40px;
-    
+    transition-delay: 3s;
     
 }
 .start_button{
@@ -89,6 +89,8 @@ body{
 .player1{
     width: 100px;
     height: 150px;
+    top: 700px;
+    left: 400px;
     border-radius: 30px;
     background-color: yellow;
     position: absolute;
@@ -101,18 +103,10 @@ body{
 }
 
 .off{
-    display: none
+    display: none;
 }
 
-
-
-
-
-
-
-
-
-.btn-11 {
+.restart-button {
     border: none;
     background-color: rgba(245, 245, 245, 0.089);
     overflow: hidden;
@@ -127,7 +121,7 @@ body{
 
     }
 
-.btn-11:hover{
+.restart-button:hover{
     background-color: rgb(206, 138, 54);
     color: black;
     font-weight: bolder;
