@@ -10,10 +10,13 @@ const gameOverMusic = new Audio("./sounds/failure.mp3");
 const insertCoin = document.querySelector(".start_button"); //START Button
 const gameOverScreen = document.querySelector(".over") // GAME OVER Screen
 const restartBtn = document.querySelector(".restart-button") // Restart Button
+const deloreangif = document.querySelector(".deloreangif") // Restart Button
+const playerdom = document.querySelector('.player1');
 
 //EventListener of Start Game
 insertCoin.addEventListener(("click"), function (e) {
     insertCoin.classList.add('off')
+    deloreangif.classList.add('off')
     musicGame.play()
     let id = 1;
     arrCar.forEach((rival) => {  
@@ -29,14 +32,16 @@ function gameOver(){
     crash.play()
     setTimeout(function(){
         gameOverScreen.classList.remove("off");
+        deloreangif.classList.remove('off')
+        playerdom.classList.add('off')
     }, 900);
 
     setTimeout(function(){
         gameOverMusic.play()
     }, 1800)
   
-    player.posX = 400
-    player.posY = 700
+    player.posX = 500
+    player.posY = 600
     player.newPos(player)
 
     rivalCar.delRival();
@@ -47,6 +52,8 @@ restartBtn.addEventListener(("click"), restartGame); //Restart Game's eventListe
 function restartGame(){
     gameOverScreen.classList.add("off"); 
     insertCoin.classList.remove("off");  
+    deloreangif.classList.remove('off')
+    playerdom.classList.remove('off')
 }
 
 function whatWant(e){
@@ -55,7 +62,7 @@ function whatWant(e){
     switch (e.key) {
         case "ArrowLeft":
             if ((player.posX + player.width) > 160) { //Left Border Map's Limit
-               
+            
                 player.posX -= player.speedX; 
                 player.newPos(player)
                 player.checkCollisionPlayer()       
@@ -63,7 +70,7 @@ function whatWant(e){
             break;
             
         case "ArrowRight":
-            if ((player.posX + player.width) < 950) { //Right Border Map
+            if ((player.posX + player.width) < 800) { //Right Border Map
 
                 player.posX += player.speedX;
                 player.newPos(player)
@@ -72,7 +79,7 @@ function whatWant(e){
             break;
 
         case "ArrowUp":
-            if ((player.posY + player.height) > 150) { //Right Border Map
+            if ((player.posY + player.height) > 250) { //Top Border Map
 
                 player.posY -= player.speedY;
                 player.newPos(player)
@@ -81,7 +88,7 @@ function whatWant(e){
             break;
 
         case "ArrowDown":
-            if ((player.posY + player.height) < 750) { //Right Border Map
+            if ((player.posY + player.height) < 650) { //Botton Border Map
 
                 player.posY += player.speedY;
                 player.newPos(player)                    
@@ -91,6 +98,7 @@ function whatWant(e){
     }    
 }
 
+//20/140/260/380/500/620
 
 
 export {

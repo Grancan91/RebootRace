@@ -9,52 +9,46 @@ body{
 }
 
 .container_game{
-    background-color: rgb(11, 26, 66);
     display: flex;
     justify-content: center;
     align-items: flex-start;
     height: 940px;
     width: 1600px;
+   
 }
 .screen_game{
     display: flex;
     align-items: center;
-    height: 850px;
+    height: 940px;
     width: 1600px;
     justify-content: center;
 }
 .screen_game_side{
-    background-image: url("/images/cesped.png");
-    background-color: green;
     width: 300px;
-    height: 850px;
+    height: 940px;
 }
 
 .screen_game_mid {
-    background-image: url("/images/patronRoad.png");
-    background-color: rgb(68, 68, 68);
     width: 1000px;
-    height: 850px;
+    height: 940px;
     display: flex;
     position: relative;
-    overflow: hidden;
+    
 }
 .piano {
-    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     width: 30px;
-    height: 850px;
+    height: 940px;
 }
 .baldosa:nth-child(2n+1){
-    background-color: rgb(255, 24, 24);
     border-radius: 3px;
     margin-top: 6vh;    
     width: 3vw;
     height: 6vh;
 }
 .over {
-    background-image: url("/images/Game-over-full.png");
+    background-image: url("../images/GameOverScreen.png");
     background-repeat: no-repeat;
     position: absolute;
     display:flex;
@@ -69,18 +63,16 @@ body{
     
 }
 .start_button{
-    background-image: url(/images/Game\ over\ .png);
-    background-size: contain;
-    background-color: center;
+    height: 700px;
+    width: 1500px;
+    background-image: url(../images/startgame.png);
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     position: absolute;
     z-index: 2;
-    left: 200px;
-    top: 400px;
     justify-content: center;
     align-items: center;
-    width: 32vw;
-    height: 18vh;
     border-radius: 20px;
     display: flex;
 }
@@ -88,41 +80,74 @@ body{
     font-size: 3em;
 }
 
+.start_button > button{
+    width: 300px;
+    height: 100px;;
+    position:absolute;
+    right: 360px;
+    bottom: 100px;
+    border-radius: 20px; 
+    background-color: rgba(245, 245, 245, 0.089);
+    border-color: black;
+    font-size: x-large;
+
+}
+.start_button > button:hover {
+  
+    background-color: rgba(68, 17, 2, 0.925);
+    border-color: black;
+    color: white;
+    font-size: xx-large;
+    transition: 1s;
+
+}
+
+
+.deloreangif{
+    background-color: black;
+    width: 480px;
+    background-repeat: no-repeat;
+    height: 250px;
+    z-index: 2;
+    position: absolute;
+    right: 700px;
+    background-image: url(/images/delorean.gif);
+}
+
 .player1{
-    background-image: url("/images/playerCar3.png");
+    background-image: url("../images/playerCar3.png");
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat ;
     border-radius: 10px;
-    width: 90px;
-    height: 150px;
-    top: 700px;
-    left: 400px;
+    width: 100px;
+    height: 190px;
+    top:   600px;
+    left: 500px;
     position: absolute;
    
 }
 .rival {
     width: 100px;
-    height: 150px;
-    background-image: url(/images/New\ Piskel-2.png.png);
+    height: 190px;
+    background-image: url(../images/rivalCarPink.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: absolute;
     border-radius: 10px;
-    background-color: red;
 }
 
 .off{
-    display: none;
+    display: none;  
 }
 
 .restart-button {
     border: none;
     background-color: rgba(245, 245, 245, 0.089);
     overflow: hidden;
-    height: 100px;
-    width: 300px;
+    height: 90px;
+    width: 280px;
     font-size:xx-large;
     font-family: 'Courier New', Courier, monospace;
     border-radius: 15px;
@@ -140,5 +165,26 @@ body{
     height: 120px;
     font-size: 40px;
     transition: 1s;
+}
 
+
+.background {
+    height: 940px;
+    width: 1600px;
+    background-image: url("../images/roadImg-modified.png");                
+    background-size: 1600px 2028px;
+    position: absolute;
+    animation: slide 0.5s linear infinite;
+    
+}
+
+@keyframes slide {
+    0% {
+        background-position: 0 100%;
+    }
+
+    100% {
+        background-position: 0 0%;
+
+    }
 }

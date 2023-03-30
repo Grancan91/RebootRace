@@ -26,34 +26,36 @@ Player.prototype.constructor = Player
 var player = new Player(
     0,      //score
     3,      //vida
-    400,    //posX
-    700,      //posY
-    15,     //speedX
-    15,    //sppedY
+    500,    //posX
+    600,      //posY
+    150,     //speedX
+    150,    //sppedY
     80,    //width
-    130     //Heigth
+    175     //Heigth
     )
 
 var rivalCar  = new Cars(
     3,      //vida
-    300,    //posX
+    50,    //posX
     -300,      //posY
     80,     //speedX
     2,    //speedY
     80,    //width
-    130,     //Heigth
+    175,     //Heigth
     1       //id
     )
 
-var rivalCar1 = new Cars(3, 600, -300, 80, 4, 80, 130, 2)
+var rivalCar1 = new Cars(3, 200, -200, 80, 1, 80, 175, 2)
 
-var rivalCar2 = new Cars(3, 750, -300, 80, 6, 80, 130, 3)
+var rivalCar2 = new Cars(3, 350, -500, 80, 1, 80, 175, 3)
 
-var rivalCar3 = new Cars(3, 750, -300, 80, 2, 80, 130, 3)
+var rivalCar3 = new Cars(3, 500, -300, 80, 1, 80, 175, 3)
 
-var rivalCar4 = new Cars(3, 750, -300, 80, 1, 80, 130, 3)
+var rivalCar4 = new Cars(3, 650, -150, 80, 1, 80, 175, 3)
 
-var arrCar = [rivalCar, rivalCar1, rivalCar2, rivalCar3, rivalCar4];
+var rivalCar5 = new Cars(3, 800, -800, 80, 1, 80, 175, 3)
+
+var arrCar = [rivalCar, rivalCar1, rivalCar2, rivalCar3, rivalCar4, rivalCar5];
 
 
 //Recive a ObjPlayer with the new posX -> Inject in DOM
@@ -67,10 +69,10 @@ Player.prototype.newPos = function (player){
 var rivalIntervalID
 var screen = document.querySelector('.screen_game_mid')
 
-let speed = 150; // Rival's speed
+let speed = 100; // Rival's speed
 
 Cars.prototype.newRival = function(id){   
-
+    //getRandomY(300, 500)
     //Show in HTML
     this.dom = document.createElement('div')
     this.dom.style.left = this.posX + "px"
@@ -88,7 +90,8 @@ Cars.prototype.delRival = function () {
     arrCar.forEach(element => {
        screen.removeChild(element.dom)
        clearInterval(element.timer)
-       element.posY = -300
+       element.posY = getRandomY(900)
+       
     });
 }
 
@@ -97,62 +100,55 @@ var random
 Cars.prototype.rivalMove = function (){
     
     arrCar.forEach(i => {
+       
        i.posY += i.speedY;
        
     // Condictional for rival's progress until screen's final
         if (i.posY < 1000){
+
+            
             i.posY += i.speedY;
     
             // Condicional check the Collision against the player
             if (i.checkCollisionRival()) {
-                gameOver()
+              
                 i.dom.style.top = `${i.posY}px`
                 i.dom.style.left = `${i.posX}px`
+                gameOver()
                 
             } else {
+               
                 i.dom.style.top = `${i.posY}px`
                 i.dom.style.left = `${i.posX}px`
             }
-        
+            if (i.dom.classList.contains("toback")) {
+                i.dom.classList.remove("toback")
+            }
         }else{
-
+        //Si no hay colision pasar rival a off
+        i.dom.classList.add("toback")
+        
         //Remove Rival/Stop Timer
         player.score += 100;
-        i.posY = -250; 
-
+        i.posY = getRandomY(600)
+        //i.posY = -250; 
+        i.speedY = 1 + getRandomSpeed(3)
         //Generate new respawn of rivals
-        random = Math.ceil(Math.random() * 6)
-            if(random != anterior){      
-                switch (random) {
-                    case 1:
-                        i.posX = 20;
-                        break;
-                    case 2:
-                        i.posX = 140;
-                        break;
-                    case 3:
-                        i.posX = 260;
-                        break;
-                    case 4:
-                        i.posX = 380;
-                        break;
-                    case 5:
-                        i.posX = 500;
-                        break;
-                    case 6:
-                        i.posX = 620;
-                        break;
-
-                }
-            anterior = random;
-
-            } else {
-                random = Math.ceil(Math.random() * 4)
-            }
+        
+        
         }  
+        
     });
 }
-
+var num
+function getRandomY(max) {
+     num = Math.random() * max 
+        console.log(-1 * num)
+        return -1*num-50
+}   
+function getRandomSpeed(max) {
+    return Math.random() * max
+}  
 
 Cars.prototype.checkCollisionRival = function () {
 
