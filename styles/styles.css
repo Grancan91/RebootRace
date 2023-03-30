@@ -127,7 +127,7 @@ body{
     z-index: 2;
     position: absolute;
     right: 700px;
-    background-image: url(/images/delorean.gif);
+    background-image: url(../images/delorean.gif);
 }
 
 .player1{
