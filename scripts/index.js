@@ -13,17 +13,22 @@ const restartBtn = document.querySelector(".restart-button") // Restart Button
 const deloreangif = document.querySelector(".deloreangif") // Restart Button
 const playerdom = document.querySelector('.player1');
 const backgroundtrans = document.querySelector(".fondo"); //Background
+
+
 //EventListener of Start Game
 insertCoin.addEventListener(("click"), function (e) {
     insertCoin.classList.add('off')
     deloreangif.classList.add('off')
     musicGame.play()
+    player.startScore()
     let id = 1;
     arrCar.forEach((rival) => {  
         rival.newRival(id)
         id++
     });
 })
+
+
 
 window.addEventListener("keydown", whatWant); //Keyboard's EventListener
 
@@ -47,17 +52,25 @@ function gameOver(){
     player.posY = 600
     player.newPos(player)
     rivalCar.delRival();
+    player.stopScore()
 }
 
 restartBtn.addEventListener(("click"), restartGame); //Restart Game's eventListener
 
 function restartGame(){
-    gameOverScreen.classList.add("off"); 
-    insertCoin.classList.remove("off");  
-    deloreangif.classList.remove('off')
+    
+    musicGame.play()
+    let id = 1;
+    arrCar.forEach((rival) => {
+        rival.newRival(id)
+        id++
+    });
+    player.startScore()
+
+    deloreangif.classList.add('off')
+    gameOverScreen.classList.add("off");     
     playerdom.classList.remove('off')
-    backgroundtrans.classList.add("background")
-    backgroundtrans.classList.add("backgroundSlow")
+
 }
 
 function whatWant(e){

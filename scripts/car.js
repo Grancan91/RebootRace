@@ -97,6 +97,7 @@ Cars.prototype.delRival = function () {
     });
 }
 
+
 var anterior = 1
 var random
 Cars.prototype.rivalMove = function (){
@@ -120,21 +121,19 @@ Cars.prototype.rivalMove = function (){
                 i.dom.style.top = `${i.posY}px`
                 i.dom.style.left = `${i.posX}px`
             }
-            if (i.dom.classList.contains("toback")) {
-                i.dom.classList.remove("toback")
-            }
         }else{
         //Si no hay colision pasar rival a off
-        i.dom.classList.add("toback")
         //Remove Rival/Stop Timer
-        player.score += 100;
+        
         i.posY = getRandomY(600)
         i.speedY = 1 + getRandomSpeed(3)
         //Generate new respawn of rivals
+       
         }  
         
     });
 }
+
 var num
 function getRandomY(max) {
      num = Math.random() * max 
@@ -144,6 +143,25 @@ function getRandomY(max) {
 function getRandomSpeed(max) {
     return Math.random() * max
 }  
+
+const score = document.querySelector(".score");
+
+var timerscore;
+Player.prototype.startScore = function(){
+
+    timerscore = setInterval(() => {
+        player.score += 1
+        score.innerText = player.score
+    }, 1000);
+    
+}
+
+Player.prototype.stopScore = function(){
+    clearInterval(timerscore);
+    player.score = 0
+    score.innerText = "TIME"
+}
+
 
 Cars.prototype.checkCollisionRival = function () {
 
@@ -168,7 +186,6 @@ Cars.prototype.checkCollisionRival = function () {
         }
     } 
 }
-
 
 Cars.prototype.checkCollisionPlayer = function (){
 
@@ -207,9 +224,6 @@ Cars.prototype.checkCollisionPlayer = function (){
         }
     }
 }
-
-
-
 
 export {    
     player,

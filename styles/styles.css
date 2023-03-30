@@ -22,6 +22,7 @@ body{
     height: 940px;
     width: 1600px;
     justify-content: center;
+    position: relative;
      
 }
 .screen_game_side{
@@ -108,7 +109,7 @@ body{
     display: flex;
     height: 90px;
     width: 280px;
-    font-size: 80px;
+    font-size: 50px;
     font-family: 'Courier New', Courier, monospace;
     border-radius: 15px;
     color: aliceblue;
@@ -118,16 +119,15 @@ body{
     align-items: center;
 }
 
-
 .deloreangif{
     background-color: black;
     width: 480px;
     background-repeat: no-repeat;
     height: 250px;
     z-index: 2;
-    position: absolute;
-    right: 700px;
     background-image: url(../images/delorean.gif);
+    position: absolute;
+    right: 15%;
 }
 
 .player1{
@@ -141,6 +141,7 @@ body{
     top:   600px;
     left: 500px;
     position: absolute;
+    transition: 0.3s;
    
 }
 .rival {
