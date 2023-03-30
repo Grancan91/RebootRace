@@ -102,24 +102,21 @@ var random
 Cars.prototype.rivalMove = function (){
     
     arrCar.forEach(i => {
-       
-       i.posY += i.speedY;
-       
+    
+    i.posY += i.speedY;
     // Condictional for rival's progress until screen's final
         if (i.posY < 1000){
-
             
             i.posY += i.speedY;
-    
             // Condicional check the Collision against the player
             if (i.checkCollisionRival()) {
-              
+            
                 i.dom.style.top = `${i.posY}px`
                 i.dom.style.left = `${i.posX}px`
                 gameOver()
                 
             } else {
-               
+            
                 i.dom.style.top = `${i.posY}px`
                 i.dom.style.left = `${i.posX}px`
             }
@@ -129,19 +126,11 @@ Cars.prototype.rivalMove = function (){
         }else{
         //Si no hay colision pasar rival a off
         i.dom.classList.add("toback")
-
         //Remove Rival/Stop Timer
         player.score += 100;
         i.posY = getRandomY(600)
-
-        //var random = Math.ceil(Math.random() * 4)
-       
-        //i.dom.classList.add("color" + Math.ceil(Math.random() * 4))
-        //i.posY = -250; 
         i.speedY = 1 + getRandomSpeed(3)
         //Generate new respawn of rivals
-        
-        
         }  
         
     });

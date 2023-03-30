@@ -68,8 +68,8 @@ function whatWant(e){
             if ((player.posX + player.width) > 160) { //Left Border Map's Limit
             
                 player.posX -= player.speedX; 
-                player.newPos(player)
-                player.checkCollisionPlayer()       
+                player.newPos(player) //Actualiza las posiciones en el objeto player.
+               // player.checkCollisionPlayer()       
             }
             break;
             
@@ -78,7 +78,7 @@ function whatWant(e){
 
                 player.posX += player.speedX;
                 player.newPos(player)
-                player.checkCollisionPlayer()
+              //  player.checkCollisionPlayer()
             }
             break;
 
@@ -87,7 +87,7 @@ function whatWant(e){
 
                 player.posY -= player.speedY;
                 player.newPos(player)
-                player.checkCollisionPlayer()
+                //player.checkCollisionPlayer()
             }
             break;
 
@@ -96,7 +96,7 @@ function whatWant(e){
 
                 player.posY += player.speedY;
                 player.newPos(player)                    
-                player.checkCollisionPlayer()
+                //player.checkCollisionPlayer()
             }
             break;
     }    
