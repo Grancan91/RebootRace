@@ -78,7 +78,7 @@ function whatWant(e){
 
                 player.posX += player.speedX;
                 player.newPos(player)
-              //  player.checkCollisionPlayer()
+                player.checkCollisionPlayer()
             }
             break;
 
@@ -87,7 +87,7 @@ function whatWant(e){
 
                 player.posY -= player.speedY;
                 player.newPos(player)
-                //player.checkCollisionPlayer()
+                player.checkCollisionPlayer()
             }
             break;
 
@@ -96,7 +96,7 @@ function whatWant(e){
 
                 player.posY += player.speedY;
                 player.newPos(player)                    
-                //player.checkCollisionPlayer()
+                player.checkCollisionPlayer()
             }
             break;
     }    
