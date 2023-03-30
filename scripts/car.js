@@ -74,13 +74,15 @@ let speed = 100; // Rival's speed
 Cars.prototype.newRival = function(id){   
     //getRandomY(300, 500)
     //Show in HTML
+    var random = Math.ceil(Math.random()*5)
+    console.log(random)
     this.dom = document.createElement('div')
     this.dom.style.left = this.posX + "px"
     this.dom.style.top = this.posY + "px"
     this.dom.setAttribute('class','rival')    
+    this.dom.classList.add("color" + random)
     this.dom.setAttribute('id', this.spriteId)
     screen.appendChild(this.dom)
-   
     //Movement in axis Y of Rivals
     this.timer = setInterval(this.rivalMove, speed) 
 }
@@ -88,10 +90,10 @@ Cars.prototype.newRival = function(id){
 Cars.prototype.delRival = function () {
 
     arrCar.forEach(element => {
-       screen.removeChild(element.dom)
-       clearInterval(element.timer)
-       element.posY = getRandomY(900)
-       
+    screen.removeChild(element.dom)
+    clearInterval(element.timer)
+    element.posY = getRandomY(900)
+    
     });
 }
 
@@ -127,10 +129,14 @@ Cars.prototype.rivalMove = function (){
         }else{
         //Si no hay colision pasar rival a off
         i.dom.classList.add("toback")
-        
+
         //Remove Rival/Stop Timer
         player.score += 100;
         i.posY = getRandomY(600)
+
+        //var random = Math.ceil(Math.random() * 4)
+       
+        //i.dom.classList.add("color" + Math.ceil(Math.random() * 4))
         //i.posY = -250; 
         i.speedY = 1 + getRandomSpeed(3)
         //Generate new respawn of rivals

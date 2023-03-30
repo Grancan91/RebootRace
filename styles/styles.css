@@ -115,7 +115,7 @@ body{
 }
 
 .player1{
-    background-image: url("../images/playerCar3.png");
+    background-image: url("../images/playerCar5.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat ;
@@ -130,13 +130,29 @@ body{
 .rival {
     width: 100px;
     height: 190px;
-    background-image: url(../images/rivalCarPink.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: absolute;
     border-radius: 10px;
 }
+
+.color1 {
+    background-image: url(../images/rivalCarOrange.png);
+}
+.color2 {
+    background-image: url(../images/rivalCarRed.png);
+}
+.color3 {
+    background-image: url(../images/rivalCarPink.png);
+}
+.color4 {
+    background-image: url(../images/rivalCarBlue.png);
+}
+.color5 {
+    background-image: url(../images/rivalCarMustard.png);
+}
+
 
 .off{
     display: none;  
@@ -175,7 +191,14 @@ body{
     background-size: 1600px 2028px;
     position: absolute;
     animation: slide 0.5s linear infinite;
-    
+}
+.backgroundSlow {
+    height: 940px;
+    width: 1600px;
+    background-image: url("../images/roadImg-modified.png");
+    background-size: 1600px 2028px;
+    position: absolute;
+    animation: slide 4s linear infinite;
 }
 
 @keyframes slide {
