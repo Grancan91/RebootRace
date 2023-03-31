@@ -41,19 +41,19 @@ var rivalCar  = new Cars(
     80,     //speedX
     2,    //speedY
     80,    //width
-    175,     //Heigth
+    165,     //Heigth
     1       //id
     )
 
-var rivalCar1 = new Cars(3, 200, -200, 80, 1, 80, 175, 2)
+var rivalCar1 = new Cars(3, 200, -200, 80, 1, 80, 165, 2)
 
-var rivalCar2 = new Cars(3, 350, -500, 80, 1, 80, 175, 3)
+var rivalCar2 = new Cars(3, 350, -500, 80, 1, 80, 165, 3)
 
-var rivalCar3 = new Cars(3, 500, -300, 80, 1, 80, 175, 3)
+var rivalCar3 = new Cars(3, 500, -300, 80, 1, 80, 165, 3)
 
-var rivalCar4 = new Cars(3, 650, -150, 80, 1, 80, 175, 3)
+var rivalCar4 = new Cars(3, 650, -150, 80, 1, 80, 165, 3)
 
-var rivalCar5 = new Cars(3, 800, -800, 80, 1, 80, 175, 3)
+var rivalCar5 = new Cars(3, 800, -800, 80, 1, 80, 165, 3)
 
 var arrCar = [rivalCar, rivalCar1, rivalCar2, rivalCar3, rivalCar4, rivalCar5];
 
@@ -158,7 +158,7 @@ Player.prototype.startScore = function(){
 
 Player.prototype.stopScore = function(){
     clearInterval(timerscore);
-    player.score = 0
+   // player.score = 0
     score.innerText = "TIME"
 }
 
