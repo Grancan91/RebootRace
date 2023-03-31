@@ -93,7 +93,6 @@ Cars.prototype.delRival = function () {
     screen.removeChild(element.dom)
     clearInterval(element.timer)
     element.posY = getRandomY(900)
-    
     });
 }
 
@@ -121,10 +120,7 @@ Cars.prototype.rivalMove = function (){
                 i.dom.style.top = `${i.posY}px`
                 i.dom.style.left = `${i.posX}px`
             }
-        }else{
-        //Si no hay colision pasar rival a off
-        //Remove Rival/Stop Timer
-        
+        }else{    
         i.posY = getRandomY(600)
         i.speedY = 1 + getRandomSpeed(3)
         //Generate new respawn of rivals
@@ -137,7 +133,6 @@ Cars.prototype.rivalMove = function (){
 var num
 function getRandomY(max) {
      num = Math.random() * max 
-        console.log(-1 * num)
         return -1*num-50
 }   
 function getRandomSpeed(max) {
@@ -158,7 +153,7 @@ Player.prototype.startScore = function(){
 
 Player.prototype.stopScore = function(){
     clearInterval(timerscore);
-   // player.score = 0
+    player.score = 0
     score.innerText = "TIME"
 }
 

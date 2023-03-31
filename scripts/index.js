@@ -2,14 +2,13 @@ import { player, rivalCar, arrCar } from "./car.js";
 
 //Elements of sounds 
 const musicGame = new Audio("./sounds/musicGame.mp3");
-musicGame.volume = 0.3;
+musicGame.volume = 0.2;
 const efectSound = "";
-const crash= new Audio("./sounds/crash.mp3");
+const crash = new Audio("./sounds/crash.mp3");
+crash.volume = 0.3;
 const gameOverMusic = new Audio("./sounds/failure.mp3");
-const throttleCut = new Audio("./sounds/acelerar_corto.mp3");
-const throttle = new Audio ("./sounds/acelerarCompleto.mp3")
-const brake = new Audio ("./sounds/freno_corto.mp3");
-brake.volume = 1;
+gameOverMusic.volume = 0.3;
+
 
 //Elements from the DOM
 const insertCoin = document.querySelector(".start_button"); //START Button
@@ -25,7 +24,6 @@ insertCoin.addEventListener(("click"), function (e) {
     insertCoin.classList.add('off')
     deloreangif.classList.add('off')
     musicGame.play()
-    throttle.play()
     
     player.startScore()
     let id = 1;
@@ -74,7 +72,6 @@ function restartGame(){
         rival.newRival(id)
         id++
     });
-    player.score = 0
     player.startScore()
    
 
@@ -93,7 +90,6 @@ function whatWant(e){
             if ((player.posX + player.width) > 160) { //Left Border Map's Limit
             
                 player.posX -= player.speedX; 
-                throttleCut.play()
                 player.newPos(player) //Actualiza las posiciones en el objeto player.
                // player.checkCollisionPlayer()       
             }
@@ -103,7 +99,6 @@ function whatWant(e){
             if ((player.posX + player.width) < 800) { //Right Border Map
 
                 player.posX += player.speedX;
-                throttleCut.play()
                 player.newPos(player)
                 player.checkCollisionPlayer()
             }
@@ -113,7 +108,6 @@ function whatWant(e){
             if ((player.posY + player.height) > 250) { //Top Border Map
 
                 player.posY -= player.speedY;
-                throttleCut.play()
                 player.newPos(player)
                 player.checkCollisionPlayer()
             }
@@ -123,7 +117,6 @@ function whatWant(e){
             if ((player.posY + player.height) < 650) { //Botton Border Map
 
                 player.posY += player.speedY;
-                brake.play()
                 player.newPos(player)                    
                 player.checkCollisionPlayer()
             }
@@ -131,7 +124,6 @@ function whatWant(e){
     }    
 }
 
-//20/140/260/380/500/620
 
 
 export {
