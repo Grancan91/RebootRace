@@ -124,7 +124,6 @@ Cars.prototype.rivalMove = function (){
         i.posY = getRandomY(600)
         i.speedY = 1 + getRandomSpeed(3)
         //Generate new respawn of rivals
-       
         }  
         
     });
