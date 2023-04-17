@@ -1,0 +1,32 @@
+{
+  "name": "rebootrace",
+  "version": "1.0.0",
+  "description": "# Description This game is inspirated in the Arcade's games of cars of 80-90's like \"*Monaco GP*\", \"*Super Stock Car*\" or \"*Lastest Lap*\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adasat/RebootRace.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adasat/RebootRace/issues"
+  },
+  "homepage": "https://github.com/Adasat/RebootRace#readme",
+  "devDependencies": {
+    "eslint": "^8.38.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1"
+  },
+  "eslintConfig": {
+    "globals": {
+      "window": true
+    }
+  }
+}
